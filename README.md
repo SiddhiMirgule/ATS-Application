@@ -1,87 +1,13 @@
-# Welcome to React Router!
+📄 AI Resume Analyser & ATS Optimizer
+AI Resume Analyser is a modern, high-performance web application designed to help job seekers bridge the gap between their resumes and automated Applicant Tracking Systems (ATS). Built using React 19, Vite, and AI-driven RAG pipelines, it provides instant semantic scoring and actionable feedback.
 
-A modern, production-ready template for building full-stack React applications using React Router.
+🚀 Key Features
+Semantic Match Scoring: Moves beyond simple keyword matching to understand the context of your experience using Large Language Models.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+Actionable AI Feedback: Generates 3-5 specific bullet points on how to improve your resume for a specific job description.
 
-## Features
+Keyword Extraction: Identifies missing technical and soft skills that recruiters are looking for.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+Real-time PDF Parsing: High-accuracy extraction from complex multi-column PDF layouts using pdfjs-dist.
 
-## Getting Started
-
-### Installation
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+Interactive AI Coach: A built-in chat interface to ask follow-up questions about your resume analysis.
