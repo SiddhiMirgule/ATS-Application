@@ -1,47 +1,43 @@
-import {Link} from "react-router";
+import { Link } from "react-router";
 import ScoreCircle from "~/components/ScoreCircle";
-import {useEffect, useState} from "react";
-import {usePuterStore} from "~/lib/puter";
+// If the error persists, try importing it explicitly:
+// import type { Resume } from "~/types";
 
-const ResumeCard = ({ resume: { id, companyName, jobTitle, feedback, imagePath } }: { resume: Resume }) => {
-    const { fs } = usePuterStore();
-    const [resumeUrl, setResumeUrl] = useState('');
+const ResumeCard = ({ resume }: { resume: Resume }) => {
+    // Destructure inside the component for better error safety
+    const { id, companyName, jobTitle, feedback, imagePath } = resume;
 
-    useEffect(() => {
-        const loadResume = async () => {
-            const blob = await fs.read(imagePath);
-            if(!blob) return;
-            let url = URL.createObjectURL(blob);
-            setResumeUrl(url);
-        }
-
-        loadResume();
-    }, [imagePath]);
+    // FIX: Remove 'public' from the path.
+    // Vite serves 'public/images/file.png' as '/images/file.png'
+    const displayPath = imagePath.replace('public/', '/');
 
     return (
         <Link to={`/resume/${id}`} className="resume-card animate-in fade-in duration-1000">
             <div className="resume-card-header">
                 <div className="flex flex-col gap-2">
-                    {companyName && <h2 className="!text-black font-bold break-words">{companyName}</h2>}
-                    {jobTitle && <h3 className="text-lg break-words text-gray-500">{jobTitle}</h3>}
-                    {!companyName && !jobTitle && <h2 className="!text-black font-bold">Resume</h2>}
+                    <h2 className="!text-black font-bold break-words">{companyName || "Resume"}</h2>
+                    <h3 className="text-lg break-words text-gray-500">{jobTitle}</h3>
                 </div>
                 <div className="flex-shrink-0">
                     <ScoreCircle score={feedback.overallScore} />
                 </div>
             </div>
-            {resumeUrl && (
-                <div className="gradient-border animate-in fade-in duration-1000">
-                    <div className="w-full h-full">
-                        <img
-                            src={resumeUrl}
-                            alt="resume"
-                            className="w-full h-[350px] max-sm:h-[200px] object-cover object-top"
-                        />
-                    </div>
+
+            <div className="gradient-border mt-4">
+                <div className="w-full h-full overflow-hidden rounded-xl bg-gray-50">
+                    <img
+                        src={displayPath}
+                        alt="resume thumbnail"
+                        className="w-full h-[350px] object-cover object-top"
+                        onError={(e) => {
+                            console.error("Failed to load image at:", displayPath);
+                            e.currentTarget.src = "https://placehold.co/400x600?text=Check+Path";
+                        }}
+                    />
                 </div>
-            )}
+            </div>
         </Link>
-    )
-}
-export default ResumeCard
+    );
+};
+
+export default ResumeCard;
