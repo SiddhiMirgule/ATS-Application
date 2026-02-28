@@ -65,7 +65,7 @@ Improvement Suggestions
 └── Dockerfile
 ⚙️ Installation
 # Clone the repository
-git clone https://github.com/your-username/ATS-Application.git
+git clone https://github.com/SiddhiMirgule/ATS-Application.git
 
 # Navigate to project
 cd ATS-Application
